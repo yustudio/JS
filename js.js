@@ -105,3 +105,15 @@ var names = animals.map(animal => animal.name);  // if can fit into 1 line, can 
 console.log("Map of animal name ES6: " + names);
 var allNames = animals.reduce((sum, animal) => sum += animal.name + " ", "start:");
 console.log("Reduce of animal name ES6: " + allNames);
+
+console.log("------------inheritance -------------")
+
+// Constructor pattern
+function Learning(name) { // function, also an object  function -> object - > null prototypical chain
+    this.name = name;  // this is unique of every instance of the Learning object
+}
+var school1 = new Learning("base");
+console.log("school1.name: " + school1.name);
+school1.name = "school1";
+console.log("school1.name: " + school1.name);
+console.log("school1.name has own: " + school1.hasOwnProperty("name"));
