@@ -105,3 +105,33 @@ var names = animals.map(animal => animal.name);  // if can fit into 1 line, can 
 console.log("Map of animal name ES6: " + names);
 var allNames = animals.reduce((sum, animal) => sum += animal.name + " ", "start:");
 console.log("Reduce of animal name ES6: " + allNames);
+
+
+console.log("------------- inheritance ------------")
+
+var Mammal  = function(name){
+    this.name = name;
+}
+
+console.log(typeof(Mammal))
+
+Mammal.prototype.get_name = function(){
+    return this.name;
+}
+
+var myMammal = new Mammal('pickel');
+var name = myMammal.get_name();
+console.log('myMammal name is: ' + name)
+
+var Cat = function(gender){
+    this.gender = gender;    
+}
+
+Cat.prototype = new Mammal();
+var mycat = new Cat('male');
+mycat.name = 'Tom';
+
+console.log(mycat.gender + mycat.name);
+
+console.log(typeof(Cat))
+
