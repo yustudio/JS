@@ -106,7 +106,8 @@ console.log("Map of animal name ES6: " + names);
 var allNames = animals.reduce((sum, animal) => sum += animal.name + " ", "start:");
 console.log("Reduce of animal name ES6: " + allNames);
 
-console.log("------------inheritance -------------")
+
+console.log("-------------------------")
 
 // Constructor pattern
 function Learning(name) { // function, also an object  function -> object - > null prototypical chain
@@ -117,3 +118,36 @@ console.log("school1.name: " + school1.name);
 school1.name = "school1";
 console.log("school1.name: " + school1.name);
 console.log("school1.name has own: " + school1.hasOwnProperty("name"));
+
+
+console.log("------------- encapsulation & inheritance ------------")
+
+var Mammal  = function(name){
+    this.name = name;
+}
+
+console.log(typeof(Mammal))
+
+Mammal.prototype.get_name = function(){
+    return this.name;
+}
+
+// encapsulation: encapsulate get_name method and name property into myMammal object
+var myMammal = new Mammal('pickel');
+var name = myMammal.get_name();
+console.log('myMammal name is: ' + name)
+
+var Cat = function(gender){
+    this.gender = gender;    
+}
+
+// inheritance
+Cat.prototype = new Mammal();
+var mycat = new Cat('male');
+mycat.name = 'Tom';
+
+console.log(mycat.gender + mycat.name);
+
+console.log(typeof(Cat))
+
+
