@@ -150,4 +150,64 @@ console.log(mycat.gender + mycat.name);
 
 console.log(typeof(Cat))
 
+console.log("-----------------------")
 
+function Plant() {
+    this.country = "Mexico";
+    this.isOrganic = true;
+}
+
+Plant.prototype.showNameAndColor = function(){
+    console.log(this.name + " " + this.color);
+}
+
+Plant.prototype.amIOrganic = function() {
+    if (this.isOrganic)
+        console.log("yes, I am organic");
+}
+
+var leave  = new Plant();
+leave.NEWPROPERTY = "NEWPROPERTY";  // if on the object, doesn't get inherited
+console.log("leave items: ")
+for (var item in leave){
+    console.log(item)
+}
+
+function Fruit (fruitName, fruitColor){
+    this.name = fruitName;
+    this.color = fruitColor;
+}
+
+Fruit.prototype = new Plant();
+
+var banana = new Fruit("Banana", "Yellow");
+
+console.log(banana.name);
+console.log(banana.showNameAndColor());
+
+console.log("banana.prototype: " + JSON.stringify(banana.prototype));
+console.log("Fruit.prototype: " + JSON.stringify(Fruit.prototype));
+console.log("Plant.prototype: " + JSON.stringify(Plant.prototype));
+
+console.log("banana items: ")
+for (var item in banana){
+    console.log(item)
+}
+
+
+console.log("------------ hoisting -----------")
+
+function wrapElements(a) {
+    var result = [], i;
+    for (i =0, n=a.length; i<n; ++i) {
+        (function(i) {
+            //var j = i;
+           result[i] = function() { return a[i]; }    
+        })(i);        
+    }
+    return result;
+}
+
+var wrap = wrapElements([1,2,3,4]);
+var f = wrap[0];
+console.log(f());
