@@ -10,6 +10,10 @@ class App extends Component {
     this.state = {title: "Will"};
   }
 
+  changeTitle(title){
+    this.setState({title});   // same as title: title
+  }
+
   render() {
     const title = "Welcome";
 
@@ -20,7 +24,7 @@ class App extends Component {
     return (
       <div>
         <h1>{title}</h1>
-        <Footer title={this.state.title} />      
+        <Footer changeTitle={this.changeTitle.bind(this)} title={this.state.title} />      
       </div>
 
       // <div className="App">
