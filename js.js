@@ -223,29 +223,64 @@
 // var f = wrap[0];
 // console.log(f());
 
-console.log("-------------  private static  ------------")
+console.log("-------------  private static variable / closure  ------------")
 //there is only one counter variable and that its value is increased whenever 
 // Gadget is called. The difference in ver1 code is that it is wrapped in an IIFE, 
 // so that counter is not accessible from any other function other than the one 
 //returned from the IIFE (which is assigned to Gadget), thus making counter "private".
 
 //version 1
+console.log("version1: static for all objects")
 var Gadget = (function () {
    var counter = 0;
-   return function () {
+   return function () {    // returning a unnamed function expression
        console.log(counter += 1);
    };
 }());
 
+var g1 = new Gadget(); // logs 1
+var g2 = new Gadget(); // logs 2
+
+console.log("counterNow: " + counter)
+
 // version 2
+console.log("version2: static per object")
+function Gadget2() {
+    var counter = 0;
+   return function () {  // creates closure
+       console.log(counter += 1);
+   };
+}
+var g1 = new Gadget2();
+g1()  // 1
+g1()  // 2
+
+
+// version 3, static but not private anymore 
+console.log("version3")
 var counter = 0;
 
-var Gadget =  function () {
+var Gadget3 = function () {
    console.log(counter += 1);
 };
 
-var g1 = new Gadget(); // logs 1
-var g2 = new Gadget(); // logs 2
+var g1 = new Gadget3(); // logs 1
+var g2 = new Gadget3(); // logs 2
+
+
+//-----------  closure  -----------
+//Functions that keep track of variables from their containing scopes 
+//are known as closures.
+function sandwichMaker() {
+    var magicIngredient = 0;
+    function make(filling) {   // make function is a closure
+        return ++magicIngredient + " and " + filling;
+    }
+    return make;
+}
+var f = sandwichMaker();
+console.log(f("jelly1"));       // 1 and jelly
+console.log(f("jelly2"));       // 2 and jelly
 
 
 // function Student(name) {
