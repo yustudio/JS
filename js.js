@@ -314,3 +314,47 @@ console.log(f("jelly2"));       // 2 and jelly
 // console.log(bob1.count)
 // console.log(bob2.students)
 // console.log(bob2.count)
+
+// ------------- MAP  ---------------
+var kvArray = [{key:1, value:10}, {key:2, value:20}, {key:3, value: 30}];
+var reformattedArray = kvArray.map(function(obj){ 
+   var rObj = {};
+   rObj[obj.key] = obj.value;
+   return rObj;
+});;
+console.log(reformattedArray);
+
+// method 1: array of char calls its map method, and gives a callback
+var map = Array.prototype.map;  
+console.log(map.call('Hello World', function(x) { return x.charCodeAt(0)}));
+// method 2
+console.log('Hello World'.split('').map(function(x) {return x.charCodeAt(0);}));
+
+// ---------------  FIND   --------------------
+function isPrime(element, index, array) {
+  var start = 2;
+  while (start <= Math.sqrt(element)) {
+    if (element % start++ < 1) {
+      return false;
+    }
+  }
+  return element > 1;
+}
+
+console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
+console.log([4, 5, 7, 12].find(isPrime)); // 5
+
+// ---------------  FILTER ----------------
+function isPrime(element, index, array) {
+  var start = 2;
+  while (start <= Math.sqrt(element)) {
+    if (element % start++ < 1) {
+      return false;
+    }
+  }
+  return element > 1;
+}
+
+console.log([4, 6, 8, 12].filter(isPrime)); // undefined, not found
+console.log([4, 5, 7, 12].filter(isPrime)); // 5
+
