@@ -230,131 +230,160 @@ console.log("-------------  private static variable / closure  ------------")
 //returned from the IIFE (which is assigned to Gadget), thus making counter "private".
 
 //version 1
-console.log("version1: static for all objects")
-var Gadget = (function () {
-   var counter = 0;
-   return function () {    // returning a unnamed function expression
-       console.log(counter += 1);
-   };
-}());
+// console.log("version1: static for all objects")
+// var Gadget = (function () {
+//    var counter = 0;
+//    return function () {    // returning a unnamed function expression
+//        console.log(counter += 1);
+//    };
+// }());
 
-var g1 = new Gadget(); // logs 1
-var g2 = new Gadget(); // logs 2
+// var g1 = new Gadget(); // logs 1
+// var g2 = new Gadget(); // logs 2
 
-console.log("counterNow: " + counter)
+// console.log("counterNow: " + counter)
 
-// version 2
-console.log("version2: static per object")
-function Gadget2() {
-    var counter = 0;
-   return function () {  // creates closure
-       console.log(counter += 1);
-   };
-}
-var g1 = new Gadget2();
-g1()  // 1
-g1()  // 2
-
-
-// version 3, static but not private anymore 
-console.log("version3")
-var counter = 0;
-
-var Gadget3 = function () {
-   console.log(counter += 1);
-};
-
-var g1 = new Gadget3(); // logs 1
-var g2 = new Gadget3(); // logs 2
+// // version 2
+// console.log("version2: static per object")
+// function Gadget2() {
+//     var counter = 0;
+//    return function () {  // creates closure
+//        console.log(counter += 1);
+//    };
+// }
+// var g1 = new Gadget2();
+// g1()  // 1
+// g1()  // 2
 
 
-//-----------  closure  -----------
-//Functions that keep track of variables from their containing scopes 
-//are known as closures.
-function sandwichMaker() {
-    var magicIngredient = 0;
-    function make(filling) {   // make function is a closure
-        return ++magicIngredient + " and " + filling;
-    }
-    return make;
-}
-var f = sandwichMaker();
-console.log(f("jelly1"));       // 1 and jelly
-console.log(f("jelly2"));       // 2 and jelly
+// // version 3, static but not private anymore 
+// console.log("version3")
+// var counter = 0;
 
-
-// function Student(name) {
-//     this.name = name;
-//     this.addStudent(name);
+// var Gadget3 = function () {
+//    console.log(counter += 1);
 // };
 
-// Student.prototype = {
-//     count: 0,
-//     students: [],
-//     addStudent: function(name) {
-//         this.students.push(name);
-//         ++(this.count);
-//     },
-//     numStudents: function() {
-//         return this.count;
-//         //return this.students.length;
-//     },
-//     getStudents: function() {
-//         return this.students;
-//     },
+// var g1 = new Gadget3(); // logs 1
+// var g2 = new Gadget3(); // logs 2
+
+
+// //-----------  closure  -----------
+// //Functions that keep track of variables from their containing scopes 
+// //are known as closures.
+// function sandwichMaker() {
+//     var magicIngredient = 0;
+//     function make(filling) {   // make function is a closure
+//         return ++magicIngredient + " and " + filling;
+//     }
+//     return make;
+// }
+// var f = sandwichMaker();
+// console.log(f("jelly1"));       // 1 and jelly
+// console.log(f("jelly2"));       // 2 and jelly
+
+
+// // function Student(name) {
+// //     this.name = name;
+// //     this.addStudent(name);
+// // };
+
+// // Student.prototype = {
+// //     count: 0,
+// //     students: [],
+// //     addStudent: function(name) {
+// //         this.students.push(name);
+// //         ++(this.count);
+// //     },
+// //     numStudents: function() {
+// //         return this.count;
+// //         //return this.students.length;
+// //     },
+// //     getStudents: function() {
+// //         return this.students;
+// //     },
+// // };
+
+// // var bob1 = new Student('bob1');
+// // var bob2 = new Student('bob2');
+// // console.log(bob1.getStudents());
+// // console.log(bob1.numStudents());
+// // console.log(bob2.getStudents());
+// // console.log(bob2.numStudents());
+// // console.log(bob1.students)
+// // console.log(bob1.count)
+// // console.log(bob2.students)
+// // console.log(bob2.count)
+
+// // ------------- MAP  ---------------
+// var kvArray = [{key:1, value:10}, {key:2, value:20}, {key:3, value: 30}];
+// var reformattedArray = kvArray.map(function(obj){ 
+//    var rObj = {};
+//    rObj[obj.key] = obj.value;
+//    return rObj;
+// });;
+// console.log(reformattedArray);
+
+// // method 1: array of char calls its map method, and gives a callback
+// var map = Array.prototype.map;  
+// console.log(map.call('Hello World', function(x) { return x.charCodeAt(0)}));
+// // method 2
+// console.log('Hello World'.split('').map(function(x) {return x.charCodeAt(0);}));
+
+// // ---------------  FIND   --------------------
+// function isPrime(element, index, array) {
+//   var start = 2;
+//   while (start <= Math.sqrt(element)) {
+//     if (element % start++ < 1) {
+//       return false;
+//     }
+//   }
+//   return element > 1;
+// }
+
+// console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
+// console.log([4, 5, 7, 12].find(isPrime)); // 5
+
+// // ---------------  FILTER ----------------
+// function isPrime(element, index, array) {
+//   var start = 2;
+//   while (start <= Math.sqrt(element)) {
+//     if (element % start++ < 1) {
+//       return false;
+//     }
+//   }
+//   return element > 1;
+// }
+
+// console.log([4, 6, 8, 12].filter(isPrime)); // undefined, not found
+// console.log([4, 5, 7, 12].filter(isPrime)); // 5
+
+// --------------   fibonachi v1 -----------------
+// var looping = function(n) {
+//     var a = 0, b = 1, f = 1;
+//     for(var i = 2; i <= n; i++) {
+//       console.log("in")
+//         f = a + b;
+//         a = b;
+//         b = f;
+//     }
+//     return f;
 // };
 
-// var bob1 = new Student('bob1');
-// var bob2 = new Student('bob2');
-// console.log(bob1.getStudents());
-// console.log(bob1.numStudents());
-// console.log(bob2.getStudents());
-// console.log(bob2.numStudents());
-// console.log(bob1.students)
-// console.log(bob1.count)
-// console.log(bob2.students)
-// console.log(bob2.count)
+// console.log(looping(3))
 
-// ------------- MAP  ---------------
-var kvArray = [{key:1, value:10}, {key:2, value:20}, {key:3, value: 30}];
-var reformattedArray = kvArray.map(function(obj){ 
-   var rObj = {};
-   rObj[obj.key] = obj.value;
-   return rObj;
-});;
-console.log(reformattedArray);
+// // --------------   fibonachi v2 -----------------
+// var resursive = function(n) {
+//   if (n <= 2) {
+//     return 1;    
+//   } else {
+//     return resursive(n-1) + resursive(n-2)
+//   }
+// }
 
-// method 1: array of char calls its map method, and gives a callback
-var map = Array.prototype.map;  
-console.log(map.call('Hello World', function(x) { return x.charCodeAt(0)}));
-// method 2
-console.log('Hello World'.split('').map(function(x) {return x.charCodeAt(0);}));
+// console.log(resursive(3))
 
-// ---------------  FIND   --------------------
-function isPrime(element, index, array) {
-  var start = 2;
-  while (start <= Math.sqrt(element)) {
-    if (element % start++ < 1) {
-      return false;
-    }
-  }
-  return element > 1;
-}
-
-console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
-console.log([4, 5, 7, 12].find(isPrime)); // 5
-
-// ---------------  FILTER ----------------
-function isPrime(element, index, array) {
-  var start = 2;
-  while (start <= Math.sqrt(element)) {
-    if (element % start++ < 1) {
-      return false;
-    }
-  }
-  return element > 1;
-}
-
-console.log([4, 6, 8, 12].filter(isPrime)); // undefined, not found
-console.log([4, 5, 7, 12].filter(isPrime)); // 5
-
+// ---------------  json string to object  --------------
+// var jsonData = '{"name":"web technology","year":2015}';
+// var myobject = JSON.parse(jsonData);
+// console.log(myobject);
