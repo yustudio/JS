@@ -387,3 +387,68 @@
 // var jsonData = '{"name":"web technology","year":2015}';
 // var myobject = JSON.parse(jsonData);
 // console.log(myobject);
+
+// var test = function (input) {
+// 	this.type = input;
+// }
+
+// var testobj = new test("a");
+// console.log(testobj.type)
+
+////------------------  arg  ---------------------
+// function function_two(a,b)
+// {
+//     var args = Array.prototype.slice.call(arguments, function_two.length);
+
+//     console.log(args);
+//     console.log(args.length);
+//     console.log(args[0]);
+// }
+
+// //"args" holds only 7 and 9
+// function_two(1, 5, 7, 9);
+
+// function test(a) {
+// 	var b = a || "test"
+// 	console.log(b)
+// }
+
+// test(1)
+
+// ----------------  scoping of this -------------------
+// var logUpperCase = function() {
+//   var _this = this
+
+//   this.string = this.string.toUpperCase()
+//   return function () {
+//   		// refer to _this in outer function since this inside 
+//   		// this function doesn't have string property
+//      console.log(_this.string)
+//   }
+// }
+
+// logUpperCase.call({ string: 'es6 rocks' })()
+
+
+// Fibonacci
+// function fibonacci(num){
+//   var a = 1, b = 0, temp;
+
+//   while (num >= 0){
+//     temp = a;
+//     a = a + b;
+//     b = temp;
+//     num--;
+//   }
+
+//   return b;
+// }
+
+function fibonacci(num) {
+  if (num <= 1) return 1;
+
+  return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
+var f = fibonacci(5)
+console.log(f)
