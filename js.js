@@ -430,7 +430,7 @@
 // logUpperCase.call({ string: 'es6 rocks' })()
 
 
-// Fibonacci
+// Fibonacci- loop
 // function fibonacci(num){
 //   var a = 1, b = 0, temp;
 
@@ -443,12 +443,55 @@
 
 //   return b;
 // }
+// Fibonacci - recursive
+// function fibonacci(num) {
+//   if (num <= 1) return 1;  // 0 based
 
-function fibonacci(num) {
-  if (num <= 1) return 1;
+//   return fibonacci(num - 1) + fibonacci(num - 2);
+// }
 
-  return fibonacci(num - 1) + fibonacci(num - 2);
+// var f = fibonacci(5)
+// console.log(f)
+
+// var recursive = function recursive(n) {
+//     if(n <= 2) {  // 1 based
+//     	console.log("n<=2 " + n)
+//         return 1;
+//     } else {
+//     	console.log(n)
+//         return recursive(n - 1) + recursive(n - 2);
+//     }
+// };
+
+// console.log(recursive(6))
+
+// Blackjack
+var bj = function(cards) {
+	var totalA = 0;
+	var sum = 0;
+	for (var i=0; i<cards.length; ++i) {
+		if (cards[i] === 1) {
+			totalA++;
+		} else if (cards[i] <= 10) {
+			sum+=cards[i];
+		} else {
+			sum+=10;
+		}
+
+	}
+
+	console.log("after sum w/o A " + sum)
+
+	if (totalA > 0) {
+		if (sum+11 > 21) {
+			sum+=totalA;
+		} else {
+			sum+=totalA+10;
+		}
+	}
+
+	return sum;
 }
 
-var f = fibonacci(5)
-console.log(f)
+var cards = [1, 1, 1, 8]
+console.log(bj(cards))
