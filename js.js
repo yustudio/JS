@@ -466,32 +466,58 @@
 // console.log(recursive(6))
 
 // Blackjack
-var bj = function(cards) {
-	var totalA = 0;
-	var sum = 0;
-	for (var i=0; i<cards.length; ++i) {
-		if (cards[i] === 1) {
-			totalA++;
-		} else if (cards[i] <= 10) {
-			sum+=cards[i];
-		} else {
-			sum+=10;
-		}
+// var bj = function(cards) {
+// 	var totalA = 0;
+// 	var sum = 0;
+// 	for (var i=0; i<cards.length; ++i) {
+// 		if (cards[i] === 1) {
+// 			totalA++;
+// 		} else if (cards[i] <= 10) {
+// 			sum+=cards[i];
+// 		} else {
+// 			sum+=10;
+// 		}
 
-	}
+// 	}
 
-	console.log("after sum w/o A " + sum)
+// 	console.log("after sum w/o A " + sum)
 
-	if (totalA > 0) {
-		if (sum+11 > 21) {
-			sum+=totalA;
-		} else {
-			sum+=totalA+10;
-		}
-	}
+// 	if (totalA > 0) {
+// 		if (sum+11 > 21) {
+// 			sum+=totalA;
+// 		} else {
+// 			sum+=totalA+10;
+// 		}
+// 	}
 
-	return sum;
+// 	return sum;
+// }
+
+// var cards = [1, 1, 1, 8]
+// console.log(bj(cards))
+
+
+//--------------------- Print out first non repeating char --------------------------//
+function test(input) {
+  var prevChars = [];
+  
+  for (var i = 0; i < input.length; ++i) {
+    
+    if (prevChars.indexOf(input[i]) === -1) {
+      
+      prevChars.push(input[i]);
+      
+      if (input.indexOf(input[i], i+1) === -1)  {
+        console.log("index: " + i + " char: " + input[i]);
+        return input[i];
+      }  
+      
+    }
+    
+  }
+  return "non repeated";
 }
 
-var cards = [1, 1, 1, 8]
-console.log(bj(cards))
+
+var a = "toot"; 
+console.log(test(a))
