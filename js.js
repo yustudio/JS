@@ -122,33 +122,45 @@
 
 // console.log("------------- encapsulation & inheritance ------------")
 
-// var Mammal  = function(name){
-//     this.name = name;
-// }
+var Mammal  = function(name){
+    console.log("----- mammal ctrl called")
+    this.name = name;
+}
 
-// console.log(typeof(Mammal))
+console.log(typeof(Mammal))
 
-// Mammal.prototype.get_name = function(){
-//     return this.name;
-// }
+Mammal.prototype.get_name = function(){
+    console.log("----- mammal get_name called")
+    return this.name;
+}
 
-// // encapsulation: encapsulate get_name method and name property into myMammal object
-// var myMammal = new Mammal('pickel');
-// var name = myMammal.get_name();
-// console.log('myMammal name is: ' + name)
+// encapsulation: encapsulate get_name method and name property into myMammal object
+var myMammal = new Mammal('pickel');
+var name = myMammal.get_name();
+console.log('myMammal name is: ' + name)
 
-// var Cat = function(gender){
-//     this.gender = gender;    
-// }
+var Cat = function(gender){
+    console.log("----- cat ctrl called")
+    //Mammal.call(this, 'Cat name')
+    this.gender = gender;    
+}
 
-// // inheritance
-// Cat.prototype = new Mammal();
-// var mycat = new Cat('male');
-// mycat.name = 'Tom';
 
-// console.log(mycat.gender + mycat.name);
+// inheritance
+Cat.prototype = Object.create(Mammal.prototype);
+console.log("after Object.create(Mammal prototype)")
 
-// console.log(typeof(Cat))
+Cat.prototype.getGender = function() {
+  console.log("----- Cat get_gender called")
+  return this.gender;
+}
+
+var mycat = new Cat('male');
+mycat.name = 'Tom';
+
+console.log(mycat.getGender() + ' ' + mycat.get_name());
+
+console.log(typeof(Cat))
 
 // console.log("-----------------------")
 
@@ -498,26 +510,27 @@
 
 
 //--------------------- Print out first non repeating char --------------------------//
-function test(input) {
-  var prevChars = [];
+// function test(input) {
+//   var prevChars = [];
   
-  for (var i = 0; i < input.length; ++i) {
+//   for (var i = 0; i < input.length; ++i) {
     
-    if (prevChars.indexOf(input[i]) === -1) {
+//     if (prevChars.indexOf(input[i]) === -1) {
+//       console.log("inside")
       
-      prevChars.push(input[i]);
+//       prevChars.push(input[i]);
       
-      if (input.indexOf(input[i], i+1) === -1)  {
-        console.log("index: " + i + " char: " + input[i]);
-        return input[i];
-      }  
+//       if (input.indexOf(input[i], i+1) === -1)  {
+//         console.log("index: " + i + " char: " + input[i]);
+//         return input[i];
+//       }  
       
-    }
+//     }
     
-  }
-  return "non repeated";
-}
+//   }
+//   return "non repeated";
+// }
 
 
-var a = "toot"; 
-console.log(test(a))
+// var a = "banana"; 
+// console.log(test(a))
